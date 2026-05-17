@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShariChitro - Aesthetic Bengali Sarees</title>
+    <style>
+        /* Global Brand Styling */
+        body {
+            font-family: 'Georgia', serif;
+            background-color: #fcfaf2; /* Elegant ivory background matching your cards */
+            color: #2c2c2c;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            background-color: #ffffff;
+            border-bottom: 2px solid #e6dfcc;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            color: #8a1c14; /* Deep festive red/maroon */
+            letter-spacing: 1px;
+        }
+
+        header p {
+            margin: 5px 0 0 0;
+            font-style: italic;
+            color: #666;
+        }
+
+        /* Product Grid Layout */
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        /* Product Card Design */
+        .product-card {
+            background: #ffffff;
+            border: 1px solid #e6dfcc;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-bottom: 1px solid #e6dfcc;
+        }
+
+        .product-info {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .product-title {
+            font-size: 1.3rem;
+            margin: 0 0 10px 0;
+            color: #111;
+        }
+
+        .product-price {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #8a1c14;
+            margin-bottom: 10px;
+        }
+
+        .product-desc {
+            font-size: 0.9rem;
+            color: #555;
+            line-height: 1.5;
+            margin-bottom: 20px;
+            height: 45px;
+            overflow: hidden;
+        }
+
+        /* WhatsApp Button styling */
+        .whatsapp-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #25D366; /* Official WhatsApp Green */
+            color: white;
+            text-decoration: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-weight: bold;
+            font-size: 1rem;
+            transition: background-color 0.3s;
+            width: 80%;
+        }
+
+        .whatsapp-btn:hover {
+            background-color: #128C7E;
+        }
+
+        .whatsapp-btn svg {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+            fill: white;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            background-color: #ffffff;
+            border-top: 1px solid #e6dfcc;
+            margin-top: 50px;
+            font-size: 0.9rem;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>শাড়িচিত্র • ShariChitro</h1>
+        <p>Aesthetic Bengali Sarees • Estd. 2026</p>
+    </header>
+
+    <div class="container">
+        <div class="product-grid" id="catalog">
+            </div>
+    </div>
+
+    <footer>
+        <p>© 2026 ShariChitro. Bishnupur, Birbhum, West Bengal.</p>
+    </footer>
+
+    <script>
+        // Your Business Configuration
+        const WHATSAPP_NUMBER = "918918615415"; // Your active business WhatsApp number with country code
+
+        // Your Saree Inventory Data
+        const sarees = [
+            {
+                id: 1,
+                title: "Traditional Red & White Tant Saree",
+                price: "₹1,850",
+                description: "Authentic cotton Tant saree with intricate red par (border), perfect for festive occasions.",
+                image: "https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=500" 
+            },
+            {
+                id: 2,
+                title: "Midnight Blue Dhakai Jamdani",
+                price: "₹4,200",
+                description: "Premium handwoven soft Dhakai Jamdani featuring exquisite floral patterns.",
+                image: "https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?w=500" 
+            },
+            {
+                id: 3,
+                title: "Pure Tussar Silk Saree",
+                price: "₹5,500",
+                description: "Elegant beige Tussar silk with hand-painted organic patterns on the anchal.",
+                image: "https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?w=500" 
+            }
+        ];
+
+        // Function to build the catalog dynamically
+        function loadCatalog() {
+            const catalogContainer = document.getElementById('catalog');
+            
+            sarees.forEach(saree => {
+                // Pre-filled custom message for the vendor
+                const messageText = `Hi ShariChitro! I would like to place an order for:\n\n` +
+                                    `🛍️ *Product:* ${saree.title}\n` +
+                                    `💰 *Price:* ${saree.price}\n\n` +
+                                    `Please confirm if this is available!`;
+                
+                const encodedMessage = encodeURIComponent(messageText);
+                const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`;
+
+                // HTML Structure for each item card
+                const cardHtml = `
+                    <div class="product-card">
+                        <img src="${saree.image}" alt="${saree.title}" class="product-image">
+                        <div class="product-info">
+                            <h3 class="product-title">${saree.title}</h3>
+                            <div class="product-price">${saree.price}</div>
+                            <p class="product-desc">${saree.description}</p>
+                            <a href="${whatsappUrl}" target="_blank" class="whatsapp-btn">
+                                <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.003 5.419 5.422 0 12.008 0c3.192.001 6.192 1.242 8.448 3.499 2.256 2.257 3.493 5.259 3.493 8.452-.003 6.581-5.422 12-12.007 12-1.993-.001-3.956-.5-5.688-1.448L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.825 1.451 5.436 0 9.86-4.37 9.864-9.799.002-2.63-1.023-5.101-2.884-6.963C16.528 2.028 14.053 1.002 11.425 1c-5.44.001-9.866 4.372-9.87 9.802 0 1.689.46 3.336 1.33 4.796l-.994 3.63 3.734-.974zm15.405-7.982c-.244-.122-1.44-.711-1.663-.792-.223-.081-.386-.122-.548.122-.162.244-.63.792-.771.954-.142.162-.284.183-.528.061-.244-.122-1.03-.38-1.961-1.21-.724-.646-1.213-1.445-1.354-1.688-.142-.244-.015-.376.107-.497.111-.11.244-.284.365-.426.122-.142.162-.244.244-.406.081-.162.041-.305-.02-.426-.061-.122-.548-1.32-.751-1.81-.197-.474-.399-.41-.548-.418H9.39c-.163 0-.426.061-.649.305-.223.244-.852.833-.852 2.031 0 1.199.873 2.356.994 2.519.122.162 1.717 2.622 4.16 3.678.581.251 1.034.401 1.388.513.584.186 1.114.16 1.533.097.468-.071 1.44-.589 1.643-1.157.203-.569.203-1.057.142-1.157-.06-.1-.223-.162-.467-.284z"/></svg>
+                                Order via WhatsApp
+                            </a>
+                        </div>
+                    </div>
+                `;
+                
+                catalogContainer.innerHTML += cardHtml;
+            });
+        }
+
+        window.onload = loadCatalog;
+    </script>
+</body>
+</html>
