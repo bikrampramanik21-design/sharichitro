@@ -16,14 +16,24 @@
 
         header {
             text-align: center;
-            padding: 40px 20px;
+            padding: 30px 20px;
             background-color: #ffffff;
             border-bottom: 2px solid #e6dfcc;
         }
 
+        /* Logo Styling */
+        .brand-logo {
+            width: 180px; /* Logo ka size control karne ke liye */
+            height: 180px;
+            object-fit: contain;
+            border-radius: 50%;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            margin-bottom: 15px;
+        }
+
         header h1 {
-            margin: 0;
-            font-size: 2.5rem;
+            margin: 5px 0 0 0;
+            font-size: 2.2rem;
             color: #8a1c14; /* Deep festive red/maroon */
             letter-spacing: 1px;
         }
@@ -32,6 +42,7 @@
             margin: 5px 0 0 0;
             font-style: italic;
             color: #666;
+            font-size: 1rem;
         }
 
         /* Product Grid Layout */
@@ -136,6 +147,7 @@
 <body>
 
     <header>
+        <img src="https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=500" alt="ShariChitro Logo" class="brand-logo" id="main-logo">
         <h1>শাড়িচিত্র • ShariChitro</h1>
         <p>Aesthetic Bengali Sarees • Estd. 2026</p>
     </header>
@@ -150,8 +162,11 @@
     </footer>
 
     <script>
+        // Logo URL adjustment injection point
+        document.getElementById('main-logo').src = "https://i.imgur.com/gK9qS1P.png";
+
         // Your Business Configuration
-        const WHATSAPP_NUMBER = "918918615415"; // Your active business WhatsApp number with country code
+        const WHATSAPP_NUMBER = "918918615415"; 
 
         // Your Saree Inventory Data
         const sarees = [
@@ -178,12 +193,10 @@
             }
         ];
 
-        // Function to build the catalog dynamically
         function loadCatalog() {
             const catalogContainer = document.getElementById('catalog');
             
             sarees.forEach(saree => {
-                // Pre-filled custom message for the vendor
                 const messageText = `Hi ShariChitro! I would like to place an order for:\n\n` +
                                     `🛍️ *Product:* ${saree.title}\n` +
                                     `💰 *Price:* ${saree.price}\n\n` +
@@ -192,7 +205,6 @@
                 const encodedMessage = encodeURIComponent(messageText);
                 const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`;
 
-                // HTML Structure for each item card
                 const cardHtml = `
                     <div class="product-card">
                         <img src="${saree.image}" alt="${saree.title}" class="product-image">
